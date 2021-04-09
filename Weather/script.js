@@ -42,6 +42,7 @@ searchCity = () => {
   const city = document.getElementById("city-input").value;
   getWeatherData(city)
     .then((response) => {
+      console.log(response)
       showWeatherData(response);
     })
     .catch((error) => {
@@ -56,6 +57,11 @@ showWeatherData = (weatherData) => {
   let temp = document.getElementById("temp");
   let maxTemp = document.getElementById("max-temp");
   let minTemp = document.getElementById("min-temp");
+  // let city = document.getElementById("city-input").value;
+  // city = city[0].toUpperCase() + city.slice(1);
+  document.getElementById("city-name").innerText = weatherData.name;
+  document.getElementById("weather-type").innerText = weatherData.weather[0].main;
+
 
   let celciusTemp = makeCelcius(weatherData.main.temp);
   let celciusMax = makeCelcius(weatherData.main.temp_max);
@@ -70,3 +76,4 @@ showWeatherData = (weatherData) => {
   makeCelcius = (fah) => {
     return (5 / 9) * (fah - 32);
   };
+
